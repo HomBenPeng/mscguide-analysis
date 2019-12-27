@@ -4986,6 +4986,11 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+react-analytics-widget@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/react-analytics-widget/download/react-analytics-widget-1.2.0.tgz#e43df22e9224f252002a1229ad720c3d41fa9c07"
+  integrity sha1-5D3yLpIk8lIAKhIprXIMPUH6nAc=
+
 react-dom@^16.12.0:
   version "16.12.0"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
