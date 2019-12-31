@@ -1,37 +1,13 @@
 {
     "version": 2,
     "regions": ["hnd1"],
-    "alias": ["admin.msc.guide"],
+    "alias": ["msc.analysis"],
     "builds": [
       { "src": "api/*.js", "use": "@now/node" },
       { "src": "package.json", "use": "@now/next" }
     ],
     "routes": [
       { "src": "/api", "dest": "api/index.js" },
-      { "src": "/api/exhibitions", "dest": "api/exhibitions.js" },
-      { "src": "/api/exhibition/(?<id>[^/]*)", "dest": "api/exhibition.js?id=$id" },
-      { "src": "/api/beacons", "dest": "api/beacons.js" },
-      { "src": "/api/beacon/(?<id>[^/]*)", "dest": "api/beacon.js?id=$id" },
-      { "src": "/api/news", "dest": "api/news.js" },
-      { "src": "/api/products", "dest": "api/products.js" },
-      { "src": "/api/product/(?<id>[^/]*)", "dest": "api/product.js?id=$id" },
-      { "src": "/api/questionnaires", "dest": "api/questionnaires.js" },
-      { "src": "/api/questionnaire/(?<id>[^/]*)", "dest": "api/questionnaire.js?id=$id" },
-      { "src": "/api/users", "dest": "api/users.js" },
-      { "src": "/api/notification", "dest": "api/notification.js" },
-      { "src": "/api/statisticsQuestionnaires/(?<start>[^/]*)/(?<end>[^/]*)", "dest": "api/statisticsQuestionnaires.js?start=$start+&end=$end" },
-      { "src": "/edit/exhibition/(?<id>[^/]*)", "dest": "/edit/exhibition?id=$id" },
-      { "src": "/edit/beacon/(?<id>[^/]*)", "dest": "/edit/beacon?id=$id" },
-      { "src": "/edit/news/(?<id>[^/]*)", "dest": "/edit/news?id=$id" },
-      { "src": "/edit/product/(?<id>[^/]*)", "dest": "/edit/product?id=$id" },
-      { "src": "/edit/questionnaires/(?<id>[^/]*)", "dest": "/edit/questionnaires?id=$id" },
-      { "src": "/api/setGaExhibiton", "dest": "api/setGaExhibiton.js"},
-      { "src": "/api/setGaProduct", "dest": "api/setGaProduct.js"},
-      { "src": "/api/setGaAgeBaby/(?<num>[^/]*)", "dest": "api/setGaAgeBaby.js?num=$num"},
-      { "src": "/api/setGaAge2to6/(?<num>[^/]*)", "dest": "api/setGaAge2to6.js?num=$num"},
-      { "src": "/api/setGaAge7to18/(?<num>[^/]*)", "dest": "api/setGaAge7to18.js?num=$num"},
-      { "src": "/api/setGaAgeAdult/(?<num>[^/]*)", "dest": "api/setGaAgeAdult.js?num=$num"},
-      { "src": "/api/setGaExhibitionTime/(?<exhibition>[^/]*)/(?<time>[^/]*)", "dest": "api/setGaExhibitionTime.js?exhibition=$exhibition+&time=$time"},
       { "src": "/api/setGaProductTime/(?<product>[^/]*)/(?<time>[^/]*)", "dest": "api/setGaProductTime.js?product=$product+&time=$time"},
       { "src": "/(.*)", "dest": "/$1"}
     ]

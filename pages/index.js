@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'react-bulma-components/dist/react-bulma-components.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
@@ -14,6 +14,7 @@ import {
   Form,
   Tag
 } from 'react-bulma-components'
+import ReactGA from 'react-ga'
 
 const tabList = [
   {
@@ -80,6 +81,10 @@ const Index = () => {
   const [startDateStr, setStartDateStr] = useState('')
   const [endDateStr, setEndDateStr] = useState('')
   const [dateError, setDateError] = useState(false)
+
+  useEffect(() => {
+    ReactGA.initialize('UA-152710294-1', { debug: true })
+  })
 
   const handleStartDateChange = date => {
     setStartDate(date)
