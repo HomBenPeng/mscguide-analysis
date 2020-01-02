@@ -1,13 +1,12 @@
 {
     "version": 2,
     "regions": ["hnd1"],
-    "alias": ["msc.analysis"],
+    "alias": ["mscguide-analysis"],
     "builds": [
       { "src": "api/*.js", "use": "@now/node" },
       { "src": "package.json", "use": "@now/next" }
     ],
     "routes": [
-      { "src": "/api", "dest": "api/index.js" },
       { "src": "/api/setGaProductTime/(?<product>[^/]*)/(?<time>[^/]*)", "dest": "api/setGaProductTime.js?product=$product+&time=$time"},
       { "src": "/api/setGaExhibitionTime/(?<exhibition>[^/]*)/(?<time>[^/]*)", "dest": "api/setGaExhibitionTime.js?exhibition=$exhibition+&time=$time"},
       { "src": "/api/setHotPeoduct/(?<product>[^/]*)", "dest": "api/setHotPeoduct.js?product=$product"},

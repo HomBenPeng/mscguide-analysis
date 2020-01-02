@@ -58,7 +58,7 @@ class GAChart extends Component {
       return (
         <div>
           {this.state.mounted && (
-            <GoogleProvider accessToken='ya29.Il-3Bw-xrOQ-Rld0vuxrW_BOPrwKGK7n25IWn-TQPkHAL57TTIDS1tvbLAervsvhPz4SX_64KvjK3rD3yRNKYYN9qH4E2CuYpt_boDX8RQbyBD1YfGpzxEuHN_mFy4I64Q'>
+            <GoogleProvider accessToken='ya29.Il-3BwqIeBpdBTFgfQIEXEf9mnez7HERwFKbFd2P27orxN7iqMCj723u0C3dn4bs3IydOyPZvXJ9Z4bs4OFdW-8alHaKTbUgYFCNCjvFcK390UHjE8_NR7PnESEZkfl0RA'>
               {CHARTS.map((c, i) => <GoogleDataChart style={{ display: 'inline-block', width: 350, margin: 20, border: '1px solid #eee', padding: 10 }} key={i} views={views} config={c} />)}
             </GoogleProvider>
           )}
