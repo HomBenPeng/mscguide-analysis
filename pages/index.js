@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import GAChart from '../components/GAChart'
 import moment from 'moment'
 import {
   Button,
@@ -13,7 +12,10 @@ import {
   Form,
   Tag
 } from 'react-bulma-components'
-
+import HotProduct from '../components/hotProduct'
+import HotExhibition from '../components/hotExhibition'
+import UseProductTime from '../components/useProductTime'
+import UseExhibitiomTime from '../components/useExhibitionTime'
 const tabList = [
   {
     name: '展廳停留時間',
@@ -87,6 +89,10 @@ class Index extends Component {
     }
   }
 
+  componentDidMount = () => {
+
+  }
+
   handleStartDateChange = date => {
     this.setState({
       startDate: date
@@ -117,6 +123,29 @@ class Index extends Component {
       this.setState({
         dateError: true
       })
+    }
+  }
+
+  renderChart = () => {
+    const { activeTab, startDateStr, endDateStr } = this.state
+    switch (activeTab) {
+      case '展廳停留時間':
+        return <UseExhibitiomTime startDate={startDateStr} endDate={startDateStr} />
+        break
+      case '展品使用時間':
+        return <UseProductTime startDate={startDateStr} endDate={startDateStr} />
+      case '熱門展品':
+        return <HotProduct startDate={startDateStr} endDate={startDateStr} />
+        break
+      case '熱門展廳':
+        return <HotExhibition startDate={startDateStr} endDate={endDateStr} />
+        break
+      case '註冊用戶':
+        console.log('註冊用戶')
+        break
+      case '進展人數':
+        console.log('進展人數')
+        break
     }
   }
 
@@ -178,7 +207,7 @@ class Index extends Component {
               changeActiveTab={this.changeActiveTab.bind(this)}
             />
             {startDateStr && endDateStr ? (
-              <GAChart startDate={startDateStr} endDate={endDateStr} />
+              this.renderChart()
             ) : (
               <p>請選擇搜尋範圍</p>
             )}
