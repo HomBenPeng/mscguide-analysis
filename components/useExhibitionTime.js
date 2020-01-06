@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 class UseProductTime extends Component {
+  componentWillMount () {
+    this.startDate = this.props.startDate
+    this.endDate = this.props.endDate
+    this.exhibitionId = this.props.exhibitionId || ''
+  }
+
   componentDidMount () {
     (function (w, d, s, g, js, fs) {
       g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (f) { this.q.push(f) } }
@@ -13,24 +19,24 @@ class UseProductTime extends Component {
         clientid: '938288037510-ot0p2ngpm7b0qsrm2cc1ovk0khj2h1nq.apps.googleusercontent.com'
       })
 
-      var dataChart = new gapi.analytics.googleCharts.DataChart({
+      var dataChart1 = new gapi.analytics.googleCharts.DataChart({
         query: {
           ids: 'ga:206321392',
-          metrics: 'ga:sessions',
+          metrics: 'ga:eventValue',
           dimensions: 'ga:date',
-          'start-date': '30daysAgo',
-          'end-date': 'yesterday'
+          'start-date': this.startDate,
+          'end-date': this.endDate,
+          filters: 'ga:eventCategory==useExhibition_' + this.exhibitionId
         },
         chart: {
-          container: 'chart-container',
+          container: 'chart-container1',
           type: 'LINE',
           options: {
             width: '100%'
           }
         }
       })
-
-      dataChart.execute()
+      dataChart1.execute()
     })
   }
 
@@ -38,7 +44,9 @@ class UseProductTime extends Component {
     return (
       <div>
         <section id='embed-api-auth-container' />
-        <section id='chart-container' />
+        <h1>展廳</h1>
+        <section id='chart-container1' />
+        <hr />
       </div>
     )
   }

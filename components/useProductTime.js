@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 class UseProductTime extends Component {
+  componentWillMount () {
+    this.startDate = this.props.startDate
+    this.endDate = this.props.endDate
+    this.productId = this.props.productId || ''
+  }
+
   componentDidMount () {
     (function (w, d, s, g, js, fs) {
       g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (f) { this.q.push(f) } }
@@ -16,10 +22,11 @@ class UseProductTime extends Component {
       var dataChart = new gapi.analytics.googleCharts.DataChart({
         query: {
           ids: 'ga:206321392',
-          metrics: 'ga:sessions',
+          metrics: 'ga:eventValue',
           dimensions: 'ga:date',
-          'start-date': '30daysAgo',
-          'end-date': 'yesterday'
+          'start-date': this.startDate,
+          'end-date': this.endDate,
+          filters: 'ga:eventCategory==useProduct_' + this.productId
         },
         chart: {
           container: 'chart-container',
@@ -32,6 +39,7 @@ class UseProductTime extends Component {
 
       dataChart.execute()
     })
+    console.log('componentDidMount')
   }
 
   render () {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-class Registered extends Component {
+class Visitors extends Component {
   componentWillMount () {
     this.startDate = this.props.startDate
     this.endDate = this.props.endDate
@@ -23,7 +23,7 @@ class Registered extends Component {
           dimensions: 'ga:date',
           'start-date': this.startDate,
           'end-date': this.endDate,
-          filters: 'ga:eventCategory==registered'
+          filters: 'ga:eventCategory==visitors'
         },
         chart: {
           type: 'TABLE',
@@ -47,4 +47,4 @@ class Registered extends Component {
     )
   }
 }
-export default Registered
+export default Visitors

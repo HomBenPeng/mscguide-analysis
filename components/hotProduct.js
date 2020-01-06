@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 class HotProduct extends Component {
+  componentWillMount () {
+    this.startDate = this.props.startDate
+    this.endDate = this.props.endDate
+  }
+
   componentDidMount () {
     (function (w, d, s, g, js, fs) {
       g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (f) { this.q.push(f) } }
@@ -17,9 +22,10 @@ class HotProduct extends Component {
         query: {
           dimensions: 'ga:eventCategory',
           metrics: 'ga:eventValue',
-          'start-date': '2019-11-01',
-          'end-date': '2020-01-05',
-          filters: 'ga:eventCategory==test,ga:eventCategory==Comus'
+          sort: '-ga:eventValue',
+          'start-date': this.startDate,
+          'end-date': this.endDate,
+          filters: 'ga:eventLabel==hotProduct'
         },
         chart: {
           type: 'TABLE',
