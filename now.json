@@ -3,10 +3,12 @@
     "regions": ["hnd1"],
     "alias": ["mscguide-analysis"],
     "builds": [
-      { "src": "package.json", "use": "@now/next" }
+      { "src": "package.json", "use": "@now/next" },
+      { "src": "api/*.js", "use": "now-node", "config": { "dist": "dist" }}
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "/$1"}
+      { "src": "/(.*)", "dest": "/$1"},
+      { "src": "/api/getToken","dest": "api/getToken.js" }
     ]
   }
   

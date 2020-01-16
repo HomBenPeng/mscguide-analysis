@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+import { GoogleProvider, GoogleDataChart } from 'react-analytics-widget'
 import {
   Button,
   Columns,
@@ -19,6 +20,7 @@ import UseProductTime from '../components/useProductTime'
 import UseExhibitiomTime from '../components/useExhibitionTime'
 import Registered from '../components/registered'
 import Visitors from '../components/visitors'
+
 //  Joseph 引入Components
 const tabList = [
   {
@@ -93,8 +95,23 @@ class Index extends Component {
     }
   }
 
-  componentDidMount = () => {
-
+  componentDidMount = async () => {
+    ;(function (w, d, s, g, js, fjs) {
+      g = w.gapi || (w.gapi = {})
+      g.analytics = {
+        q: [],
+        ready: function (cb) {
+          this.q.push(cb)
+        }
+      }
+      js = d.createElement(s)
+      fjs = d.getElementsByTagName(s)[0]
+      js.src = 'https://apis.google.com/js/platform.js'
+      fjs.parentNode.insertBefore(js, fjs)
+      js.onload = function () {
+        g.load('analytics')
+      }
+    })(window, document, 'script')
   }
 
   handleStartDateChange = date => {
@@ -151,6 +168,29 @@ class Index extends Component {
 
   render () {
     const { startDate, endDate, startDateStr, endDateStr, dateError } = this.state
+    const views = {
+      query: {
+        ids: 'ga:206321392'
+      }
+    }
+    const CHARTS =
+      {
+        reportType: 'ga',
+        query: {
+          metrics: 'ga:sessions',
+          dimensions: 'ga:date',
+          'start-date': startDateStr,
+          'end-date': endDateStr,
+          filters: 'ga:eventCategory==visitors'
+        },
+        chart: {
+          type: 'TABLE',
+          container: 'main-chart-container',
+          options: {
+            width: '100%'
+          }
+        }
+      }
     return (
       <Container>
         <Box>
@@ -207,7 +247,10 @@ class Index extends Component {
               changeActiveTab={this.changeActiveTab.bind(this)}
             />
             {startDateStr && endDateStr ? (
-              this.renderChart()
+              // this.renderChart()
+              <GoogleProvider accessToken='ya29.c.Kl66BzuiNz8NBO4fsW6oPGI7cHe2kOL3eUsxvw-Sr59qz3bIJimJ_krTRpjUaXl6MmuHtnRmeICrVGxU7EQfefx_iwodwoaialqrrnR2QnC_5HSElGdKXwFC8TIphKw6'>
+                <GoogleDataChart views={views} config={CHARTS} />
+              </GoogleProvider>
             ) : (
               <p>請選擇搜尋範圍</p>
             )}
