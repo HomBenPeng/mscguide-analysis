@@ -9,7 +9,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "googleapis": "^46.0.0",
     "insight": "^0.10.3",
     "moment": "^2.24.0",
